@@ -1,6 +1,6 @@
-## :pushpin:Tugas 7
+# :pushpin:Tugas 7
 
-# 1. Jelaskan apa yang dimaksud dengan stateless widget dan stateful widget, dan jelaskan perbedaan dari keduanya.
+## 1. Jelaskan apa yang dimaksud dengan stateless widget dan stateful widget, dan jelaskan perbedaan dari keduanya.
 
 Stateless widget
 - Widget yang statis/tidak dapat berubah (immutable)
@@ -16,7 +16,7 @@ Stateful widget:
 - Membutuhkan 2 class: class widget dan class state
 - Cocok untuk UI yang interaktif dan perlu update secara dinamis
 
-# 2. Sebutkan widget apa saja yang kamu gunakan pada proyek ini dan jelaskan fungsinya.
+## 2. Sebutkan widget apa saja yang kamu gunakan pada proyek ini dan jelaskan fungsinya.
 
 1) MaterialApp
 
@@ -113,7 +113,7 @@ Pada intinya, widget-widget yang digunakan memiliki fungsi sebagai berikut:
 - Widgets konten (Text, Icon) menampilkan informasi ke user
 - Widgets spacing (Padding, SizedBox) mengatur jarak antar elemen
 
-# 3. Apa fungsi dari setState()? Jelaskan variabel apa saja yang dapat terdampak dengan fungsi tersebut.
+## 3. Apa fungsi dari setState()? Jelaskan variabel apa saja yang dapat terdampak dengan fungsi tersebut.
 
 setState() adalah sebuah method di Flutter yang digunakan khusus dalam StatefulWidget untuk memberitahu framework bahwa internal state dari objek telah berubah dan perlu melakukan rebuild widget.
 
@@ -130,7 +130,7 @@ Variabel yang dapat terdampak setState():
 - Collections (List, Map, Set)
 - Custom Objects/Classes
 
-# 4. Jelaskan perbedaan antara const dengan final.
+## 4. Jelaskan perbedaan antara const dengan final.
 
 Const
 
@@ -145,7 +145,7 @@ Final
 - final digunakan untuk mendefinisikan nilai yang hanya dapat diinisialisasi sekali, tetapi nilai tersebut tidak harus diketahui saat compile-time. Nilai bisa ditentukan pada saat runtime, tetapi begitu diinisialisasi, nilainya tidak bisa diubah.
 - Variabel final hanya dapat diinisialisasi satu kali dan setelah itu, sertabersifat immutable.
 
-# 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist-checklist di atas.
+## 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist-checklist di atas.
 
 1) Buat proyek Flutter baru pada terminal dengan nama breezy, kemudian masuk ke dalam direktori proyek tersebut
 ```
