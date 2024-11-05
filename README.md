@@ -147,33 +147,34 @@ Final
 
 ## 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist-checklist di atas.
 
-1) Buat proyek Flutter baru pada terminal dengan nama breezy, kemudian masuk ke dalam direktori proyek tersebut
+1) Membuat sebuah program Flutter baru dengan tema E-Commerce yang sesuai dengan tugas-tugas sebelumnya.
+- Buat proyek Flutter baru pada terminal dengan nama breezy, kemudian masuk ke dalam direktori proyek tersebut
 ```
 flutter create breezy
 cd breezy
 ```
 
-2) Jalankan proyek 
+- Jalankan proyek 
 ```
 flutter run
 ```
 
-3) Melakukan git init pada root folder dan melakukan add-commit-push ke proyek repositori baru di GitHub dengan nama "breezy-mobile"
+- Melakukan git init pada root folder dan melakukan add-commit-push ke proyek repositori baru di GitHub dengan nama "breezy-mobile"
 
-4) Buat file baru bernama menu.dart pada direktori breezy/lib. Masukkan kode ini di atas file menu.dart
+- Buat file baru bernama menu.dart pada direktori breezy/lib. Masukkan kode ini di atas file menu.dart
 ```
 import 'package:flutter/material.dart';
 ```
 
-5) Dari file main.dart, cut kode bagian class MyHomePage dan class _MyHomePageState dan paste ke file menu.dart
+- Dari file main.dart, cut kode bagian class MyHomePage dan class _MyHomePageState dan paste ke file menu.dart
 
-6) Pada file main.dart, tambahkan import berikut
+- Pada file main.dart, tambahkan import berikut
 
 ```
 import 'package:mental_health_tracker/menu.dart';
 ```
 
-7) Mengubah sifat widget halaman menu menjadi Stateless, hapus semua isi dari class MyHomePage, menambahkan `MyHomePage({super.key})` sebagai constructor class MyHomePage, hapus seluruh isi `class _MyHomePageState`, dan menambahkan widget build
+- Mengubah sifat widget halaman menu menjadi Stateless, hapus semua isi dari class MyHomePage, menambahkan `MyHomePage({super.key})` sebagai constructor class MyHomePage, hapus seluruh isi `class _MyHomePageState`, dan menambahkan widget build
  ```
  class MyHomePage extends StatelessWidget {
     MyHomePage({super.key});
@@ -187,7 +188,7 @@ import 'package:mental_health_tracker/menu.dart';
 }
 ```
 
-8) Mendeklarasikan tiga variabel yang berisi NPM, nama, dan kelas pada class MyHomePage di menu.dart
+- Mendeklarasikan tiga variabel yang berisi NPM, nama, dan kelas pada class MyHomePage di menu.dart
 ```
 class MyHomePage extends StatelessWidget {
   final String npm = '2306245895'; // NPM
@@ -195,7 +196,7 @@ class MyHomePage extends StatelessWidget {
   final String className = 'PBP A'; // Kelas
 ```
 
-9) Membuat class baru bernama InfoCard pada menu.dart serta menambah color
+- Membuat class baru bernama InfoCard pada menu.dart serta menambah color
 ```
 class InfoCard extends StatelessWidget {
   // Kartu informasi yang menampilkan title dan content.
@@ -232,7 +233,7 @@ class InfoCard extends StatelessWidget {
 }
 ```
 
-10) Membuat button card dengan class baru bernama ItemHomepage yang berisi atribut dari card yang akan dibuat
+- Membuat button card dengan class baru bernama ItemHomepage yang berisi atribut dari card yang akan dibuat
 ```
 class ItemHomepage {
      final String name;
@@ -242,8 +243,9 @@ class ItemHomepage {
      ItemHomepage(this.name, this.icon, this.color);
  }
 ```
+2) Membuat tiga tombol sederhana dengan ikon dan teks dan Mengimplementasikan warna-warna yang berbeda untuk setiap tombol
 
-11) Pada file menu.dart, buat list of ItemHomepage di dalam class MyHomepage yang berisi tombol yang ingin ditambahkan
+- Pada file menu.dart, buat list of ItemHomepage di dalam class MyHomepage yang berisi tombol yang ingin ditambahkan
 ```
 final List<ItemHomepage> items = [
     ItemHomepage("Lihat Daftar Produk", Icons.card_giftcard, Color(0xFF967E76)),
@@ -251,8 +253,10 @@ final List<ItemHomepage> items = [
     ItemHomepage("Logout", Icons.logout, Color(0xFFEEE3CB)),
   ];
 ```
+3) Memunculkan Snackbar
 
-12) Membuat class ItemCard untuk menampilkan tombol-tombol dan menampilkan snackbar yang berisi pesan "Kamu telah menekan tombol [nama button]"
+- Membuat class ItemCard untuk menampilkan tombol-tombol dan menampilkan snackbar yang berisi pesan "Kamu telah menekan tombol [nama button]"
+
 ```
 class ItemCard extends StatelessWidget {
   // Menampilkan kartu dengan ikon dan nama.
@@ -308,7 +312,7 @@ class ItemCard extends StatelessWidget {
 }
 ```
 
-13) Mengintegrasikan dan menampilkan seluruh card, ubah bagian Widget build() pada class MyHomepage
+- Mengintegrasikan dan menampilkan seluruh card, ubah bagian Widget build() pada class MyHomepage
 ```
 @override
   Widget build(BuildContext context) {
