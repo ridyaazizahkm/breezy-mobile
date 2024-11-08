@@ -394,3 +394,174 @@ class ItemCard extends StatelessWidget {
   }
 }
 ```
+
+# :pushpin:Tugas 8
+## 1. Apa kegunaan const di Flutter? Jelaskan apa keuntungan ketika menggunakan const pada kode Flutter. Kapan sebaiknya kita menggunakan const, dan kapan sebaiknya tidak digunakan?
+
+Saat menandai sebuah widget atau nilai dengan const, kita memberitahu Flutter bahwa konten tersebut bersifat konstan dan tidak akan berubah. Flutter akan membuat widget atau nilai const ini saat compile-time, bukan saat runtime. Ini membuat aplikasi berjalan lebih efisien karena Flutter tidak perlu membuang waktu dan sumber daya untuk membuat ulang widget yang sama berulang kali.
+
+Keuntungan utama menggunakan const adalah aplikasi jadi lebih cepat karena widget tidak perlu dirun ulang setiap kali terjadi perubahan, penggunaan memori lebih efisien karena Flutter bisa menggunakan instance yang sama berulang kali, code jadi lebih aman karena nilai tidak bisa diubah secara tidak sengaja
+
+Sebaiknya, kita menggunakan const untuk hal-hal yang benar-benar statis dan tidak berubah, seperti:
+
+- Teks yang selalu sama ("Save", "Cancel", dll)
+- Ukuran padding atau margin yang tetap
+- Warna yang sudah ditentukan
+- Daftar atau nilai yang tidak akan berubah selama aplikasi berjalan
+
+Kemudian, hindari penggunaan const untuk:
+
+- Widget yang menampilkan data dari API atau database
+- Widget yang berinteraksi dengan pengguna (seperti tombol dengan fungsi onPressed)
+- Widget yang memiliki animasi atau perubahan state
+- Nilai yang dihitung saat aplikasi berjalan (seperti waktu saat ini)
+
+## 2. Jelaskan dan bandingkan penggunaan Column dan Row pada Flutter. Berikan contoh implementasi dari masing-masing layout widget ini!
+
+Column dan Row adalah widget dasar untuk mengatur layout di Flutter. Perbedaan utamanya terletak pada arah penyusunan widget child mereka:
+
+Column (Vertikal)
+
+- Menyusun widget dari atas ke bawah
+- Child widget disusun secara vertikal
+- Sangat berguna untuk membuat form, list, atau susunan vertikal lainnya
+
+Contoh implementasi:
+```
+Column(
+  mainAxisAlignment: MainAxisAlignment.center,    // Perataan vertikal
+  crossAxisAlignment: CrossAxisAlignment.start,   // Perataan horizontal
+  children: [
+    Text('Nama: Ahmad'),
+    SizedBox(height: 8),                         // Spacing vertikal
+    Text('Umur: 25 tahun'),
+    SizedBox(height: 8),
+    Text('Alamat: Jakarta'),
+  ],
+)
+```
+
+Row (Horizontal)
+
+- Menyusun widget dari kiri ke kanan
+- Child widget disusun secara horizontal
+- Cocok untuk membuat toolbar, menu, atau deretan tombol
+
+Contoh implementasi:
+```
+Row(
+  mainAxisAlignment: MainAxisAlignment.spaceEvenly,   // Perataan horizontal
+  crossAxisAlignment: CrossAxisAlignment.center,      // Perataan vertikal
+  children: [
+    Icon(Icons.home),
+    SizedBox(width: 8),                              // Spacing horizontal
+    Icon(Icons.search),
+    SizedBox(width: 8),
+    Icon(Icons.settings),
+  ],
+)
+```
+
+## 3. Sebutkan apa saja elemen input yang kamu gunakan pada halaman form yang kamu buat pada tugas kali ini. Apakah terdapat elemen input Flutter lain yang tidak kamu gunakan pada tugas ini? Jelaskan!
+
+Pada halaman form yang pada tugas 8, saya menggunakan elemen input TextFormField, yang digunakan untuk semua input dalam form, dengan berbagai validasi berbeda:
+
+- Name (input teks)
+- Amount (input angka)
+- Price (input angka)
+- Description (input teks)
+- Ukuran (input teks)
+- Aroma (input teks)
+- Top Notes (input teks)
+- Middle Notes (input teks)
+- Base Notes (input teks)
+
+Terdapat elemen input yang tidak saya gunakan:
+- Checkbox: Untuk input boolean (true/false) dan berguna untuk pilihan yang bisa dipilih lebih dari satu
+- Radio Button: Untuk memilih satu opsi dari beberapa pilihan
+- Switch: Toggle on/off, mirip checkbox tapi dengan tampilan yang berbeda
+- Slider: Untuk memilih nilai dalam rentang tertentu
+- DropdownButton: Untuk memilih satu opsi dari daftar pilihan, dan lebih hemat ruang dibanding radio button
+- DatePicker: Untuk memilih tanggal
+- TimePicker: Untuk memilih waktu
+- RangeSlider: Untuk memilih rentang nilai
+- Image Picker: Untuk mengambil gambar dari kamera atau galeri
+- Color Picker: Untuk memilih warna
+
+## 4. Bagaimana cara kamu mengatur tema (theme) dalam aplikasi Flutter agar aplikasi yang dibuat konsisten? Apakah kamu mengimplementasikan tema pada aplikasi yang kamu buat?
+
+Dalam aplikasi yang dibuat, saya telah mengimplementasikan pengaturan tema melalui ThemeData di file main.dart. Berikut adalah penjelasan detail tentang implementasi dan cara mengatur tema di Flutter:
+
+Implementasi tema di aplikasi saat ini:
+
+```
+theme: ThemeData(
+    colorScheme: ColorScheme.light(
+        primary: (const Color(0xFF3C3633)),    
+        secondary: (const Color(0xFF3C3633)), 
+    ),
+    useMaterial3: true,
+),
+```
+
+Tema ini digunakan di beberapa tempat:
+
+```
+// Di AppBar
+appBar: AppBar(
+    backgroundColor: Theme.of(context).colorScheme.primary,
+    foregroundColor: Colors.white,
+)
+
+// Di DrawerHeader
+decoration: BoxDecoration(
+    color: Theme.of(context).colorScheme.primary,
+)
+
+// Di ElevatedButton
+style: ButtonStyle(
+    backgroundColor: WidgetStateProperty.all(
+        Theme.of(context).colorScheme.primary
+    ),
+)
+```
+
+## 5. Bagaimana cara kamu menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter?
+
+1) Menggunakan Navigator.push() dan Navigator.pushReplacement()
+- Pada ItemCard (saat tombol di homepage ditekan):
+```
+if (item.name == "Tambah Produk") {
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const ProductEntryFormPage()),
+    );
+}
+```
+
+- Pada LeftDrawer (navigasi melalui drawer):
+```
+ListTile(
+    leading: const Icon(Icons.home_outlined),
+    title: const Text('Halaman Utama'),
+    onTap: () {
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => MyHomePage(),
+            ));
+    },
+),
+```
+
+2) Menggunakan Drawer untuk Navigasi Samping
+```
+drawer: const LeftDrawer(),  // Menambahkan drawer ke Scaffold
+```
+Fitur Navigasi yang Diimplementasikan:
+
+- Navigasi dari homepage ke form tambah produk
+- Navigasi melalui drawer ke halaman utama
+- Navigasi melalui drawer ke form tambah produk
+- Navigasi kembali menggunakan AppBar (back button otomatis)
+

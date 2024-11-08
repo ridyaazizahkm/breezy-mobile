@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:breezy/menu.dart';
+import 'package:breezy/screens/menu.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,9 +29,11 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.deepPurple,
-        ).copyWith(secondary: Colors.deepPurple[400]),
+        
+        colorScheme: ColorScheme.light(
+          primary : (const Color(0xFF3C3633)),
+          secondary: (const Color(0xFF3C3633)),
+        ),
         useMaterial3: true,
       ),
       home: MyHomePage(),
