@@ -1,3 +1,4 @@
+import 'package:breezy/screens/list_productentry.dart';
 import 'package:breezy/screens/productentry_form.dart';
 import 'package:flutter/material.dart';
 import 'package:breezy/screens/menu.dart';
@@ -51,7 +52,7 @@ class LeftDrawer extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.card_giftcard),
+              leading: const Icon(Icons.add),
               title: const Text('Tambah Produk'),
               // Bagian redirection ke FormPage
               onTap: () {
@@ -62,6 +63,17 @@ class LeftDrawer extends StatelessWidget {
                   ));
               },
             ),
+            ListTile(
+              leading: const Icon(Icons.card_giftcard),
+              title: const Text('Daftar Produk'),
+              onTap: () {
+                  // Route menu ke halaman mood
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const ProductEntryPage()),
+                  );
+              },
+          ),
         ],
       ),
     );

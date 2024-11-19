@@ -1,5 +1,10 @@
+// ignore: file_names
+import 'package:breezy/screens/list_productentry.dart';
+import 'package:breezy/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:breezy/screens/productentry_form.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 class ItemHomepage {
      final String name;
      final IconData icon;
@@ -17,6 +22,7 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Material(
       // Menentukan warna latar belakang dari tema aplikasi.
       color: item.color, // Menggunakan warna yang sudah didefinisikan
@@ -25,7 +31,7 @@ class ItemCard extends StatelessWidget {
       
       child: InkWell(
         // Aksi ketika kartu ditekan.
-        onTap: () {
+        onTap: () async {
           // Menampilkan pesan SnackBar saat kartu ditekan.
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
@@ -38,7 +44,35 @@ class ItemCard extends StatelessWidget {
               context,
               MaterialPageRoute(builder: (context) => const ProductEntryFormPage()),
             );
-          }
+          } else if (item.name == "Lihat Daftar Produk") {
+              Navigator.push(context,
+                MaterialPageRoute(
+                    builder: (context) => const ProductEntryPage()
+                ),
+              );
+            } else if (item.name == "Logout") {
+                final response = await request.logout(
+                    "http://127.0.0.1:8000/auth/logout/");
+                String message = response["message"];
+                if (context.mounted) {
+                    if (response['status']) {
+                        String uname = response["username"];
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text("$message Sampai jumpa, $uname."),
+                        ));
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => const LoginPage()),
+                        );
+                    } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                                content: Text(message),
+                            ),
+                        );
+                    }
+                }
+            }
         },
         // Container untuk menyimpan Icon dan Text
         child: Container(
@@ -65,6 +99,5 @@ class ItemCard extends StatelessWidget {
         ),
       ),
     );
-  }
-  
+  } 
 }
